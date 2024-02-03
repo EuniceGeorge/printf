@@ -36,7 +36,7 @@ int printbin(va_list val);
 int printrevs(va_list args);
 int printrot13(va_list args);
 int printi(va_list args);
-int print_d(va_list args);
+int printd(va_list args);
 int _strlen(char *s);
 int rev_string(char *s);
 int print37(void);
