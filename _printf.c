@@ -7,42 +7,43 @@
  * @format: string passed with possible format specifiers
  * Return: number of characters printed
  */
-int _printf(const char *format, ...)
+int _printf(const char * const format, ...)
 {
-	int i, blen, hlen;
-	double totalBuffer;
-	double *total;
-	va_list argp;
-	char buffer[BUFSIZE], *holder;
-	char *(*pointer_get_valid)(va_list);
+	convert p[] = {
+		{"%s", print_s}, {"%c", print_c},
+		{"%%", print_37},
+		{"%i", print_i}, {"%d", print_d}, {"%r", print_revs},
+		{"%R", print_rot13}, {"%b", print_bin},
+		{"%u", print_unsigned},
+		{"%o", print_oct}, {"%x", print_hex}, {"%X", print_HEX},
+		{"%S", print_exc_string}, {"%p", print_pointer}
+	};
 
-	for (i = 0; i < BUFSIZE; i++)
+	va_list args;
+	int i = 0, j, length = 0;
+
+	va_start(args, format);
+	if (format == NULL || (format[0] == '%' && format[i] == '\0'))
+		return (-1);
+
+Here:
+	while (format[i] != '\0')
 	{
-		buffer[i] = 0;
-	}
-	totalBuffer = 0;
-	pointer_get_valid = NULL;
-	total = &totalBuffer;
-	va_start(argp, format);
-	for (i = blen = hlen = 0; format && format[i]; i++)
-	{
-		if (format[i] == '%')
+		j = 13;
+		while (j >= 0)
 		{
-			pointer_get_valid = get_valid_type(format[i + 1]);
-			holder = (pointer_get_valid == NULL) ?
-				found_nothing(format[i + 1]) :
-				pointer_get_valid(argp);
-			hlen = _strlen(holder);
-			blen = alloc_buffer(holder, hlen, buffer, blen, total);
-			i++;
+			if (p[j].ph[0] == format[i] && p[j].ph[1] == format[i + 1])
+			{
+				length += p[j].function(args);
+				i = i + 2;
+				goto Here;
+			}
+			j--;
 		}
-		else
-		{
-			holder = ctos(format[i]);
-			blen = alloc_buffer(holder, 1, buffer, blen, total);
-		}
+		_putchar(format[i]);
+		length++;
+		i++;
 	}
-	va_end(argp);
-	_puts(buffer, blen);
-	return (totalBuffer + blen);
+	va_end(args);
+	return (length);
 }
