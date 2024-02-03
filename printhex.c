@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * print_HEX - prints an hexgecimal number.
+ * printHEX - prints an hexgecimal number.
  * @val: arguments.
  * Return: counter.
  */
-int print_HEX(va_list val)
+int printHEX(va_list val)
 {
 	int i;
 	int *array;

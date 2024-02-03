@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * print_d - prints decimal
+ * printd - prints decimal
  * @args: argument to print
  * Return: integer
  */
 
-int print_d(va_list args)
+int printd(va_list args)
 {
 	int n = va_arg(args, int);
 	int num, last = n % 10, digit;

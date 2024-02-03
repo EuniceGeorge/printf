@@ -1,10 +1,10 @@
 #include "main.h"
 /**
- * print_hex - prints an hexgecimal number.
+ * printhex - prints an hexgecimal number.
  * @val: arguments.
  * Return: counter.
  */
-int print_hex(va_list val)
+int printhex(va_list val)
 {
 	int i;
 	int *array;

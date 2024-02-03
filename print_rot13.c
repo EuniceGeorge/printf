@@ -1,11 +1,11 @@
 #include "main.h"
 /**
- * print_rot13 - convert to rot13
+ * printrot13 - convert to rot13
  * @args: printf arguments
  * Return: counter
  *
  */
-int print_rot13(va_list args)
+int printrot13(va_list args)
 {
 	int i, j, counter = 0;
 	int k = 0;

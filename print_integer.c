@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * print_i - prints integer
+ * printi - prints integer
  * @args: argument to print
  * Return: integer
  */
-int print_i(va_list args)
+int printi(va_list args)
 {
 	int n = va_arg(args, int);
 	int num, last = n % 10, digit, exp = 1;
